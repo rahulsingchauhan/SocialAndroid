@@ -1,7 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import TabScreenHome from './bottomNavigation/HomeScreen';
+import TabScreenHome from './HomeScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,13 +14,16 @@ const getTabBarIcon = (routeName, focused, color, size) => {
     case 'Home':
       iconName = focused ? 'home' : 'home-outline';
       break;
-
+    case 'Profile':
+      iconName = focused ? 'person' : 'person-outline';
+      break;
     default:
       iconName = 'alert-circle-outline';
   }
 
   return <Icon name={iconName} size={size} color={color} />;
 };
+
 
 export default function BottomTabs() {
   return (
@@ -32,6 +36,7 @@ export default function BottomTabs() {
         tabBarInactiveTintColor: 'gray',
       })}>
       <Tab.Screen name="Home" component={TabScreenHome} />
+       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
