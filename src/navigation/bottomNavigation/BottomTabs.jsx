@@ -1,8 +1,10 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import TabScreenHome from './HomeScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
+import HomeScreen from '../../screens/HomeScreen';
+import SearchScreen from '../../screens/SearchScreen';
+import NotificationsScreen from '../../screens/NotificationsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,6 +16,12 @@ const getTabBarIcon = (routeName, focused, color, size) => {
     case 'Home':
       iconName = focused ? 'home' : 'home-outline';
       break;
+    case 'Search':
+      iconName = focused ? 'search' : 'search-outline';
+      break;
+    case 'Notification':
+      iconName = focused ? 'notifications' : 'notifications-outline';
+      break;
     case 'Profile':
       iconName = focused ? 'person' : 'person-outline';
       break;
@@ -23,7 +31,6 @@ const getTabBarIcon = (routeName, focused, color, size) => {
 
   return <Icon name={iconName} size={size} color={color} />;
 };
-
 
 export default function BottomTabs() {
   return (
@@ -35,8 +42,10 @@ export default function BottomTabs() {
         tabBarActiveTintColor: '#0a84ff',
         tabBarInactiveTintColor: 'gray',
       })}>
-      <Tab.Screen name="Home" component={TabScreenHome} />
-       <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Notification" component={NotificationsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
