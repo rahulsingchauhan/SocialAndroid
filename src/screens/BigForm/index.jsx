@@ -1,22 +1,15 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { styles } from './style';
+import { SignupValidationSchema } from '../Schema/Schema';
 
 // ✅ Yup Validation Schema
-const validationSchema = Yup.object().shape({
-  fullName: Yup.string().min(3, 'Enter full name').required('Full name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  password: Yup.string().min(6, 'At least 6 characters').required('Password is required'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm your password'),
-  phone: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Enter valid 10-digit phone number')
-    .required('Phone number is required'),
-});
 
 const BigForm = () => {
+  const loginSubmit =(values)=>{
+console.log(values)
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Formik
@@ -27,10 +20,8 @@ const BigForm = () => {
           confirmPassword: '',
           phone: '',
         }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
-        }}
+        validationSchema={SignupValidationSchema}
+        onSubmit={(values) => loginSubmit(values)}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <View>
@@ -110,27 +101,4 @@ const BigForm = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#000',
-    padding: 20,
-    flexGrow: 1,
-    justifyContent: 'center',
-  },
-  input: {
-    backgroundColor: '#1a1a1a',
-    color: '#fff',
-    borderWidth: 1,
-    borderColor: '#333',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-  },
-  error: {
-    color: '#ff4d4d',
-    marginBottom: 10,
-  },
-});
-
 export default BigForm;
