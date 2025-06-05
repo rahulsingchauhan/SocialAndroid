@@ -8,6 +8,11 @@ import SettingsScreen from '../../screens/SettingsScreen';
 import EditProfileScreen from '../../screens/EditProfileScreen';
 import BottomTabs from '../bottomNavigation/BottomTabs';
 import NotificationsScreen from '../../screens/NotificationsScreen';
+import FormScreen from '../../screens/FormScreen';
+import GoogleFonts from '../../screens/GoogleFonts';
+import BigForm from '../../screens/BigForm';
+import SignupForm from '../../screens/SignupForm';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +24,10 @@ const StackNavigator = () => {
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
+       <Stack.Screen name="FormScreen" component={FormScreen} />
+          <Stack.Screen name="GoogleFonts" component={GoogleFonts} />
+          <Stack.Screen name="BigForm" component={BigForm}/>
+          <Stack.Screen name="SignupForm" component={SignupForm}/>
     </Stack.Navigator>
   );
 };

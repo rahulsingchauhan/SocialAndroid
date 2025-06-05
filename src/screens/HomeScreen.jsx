@@ -10,6 +10,10 @@ const HomeScreen = () => {
     { title: 'Go to Profile', screen: 'Profile' },
     { title: 'Go to Settings', screen: 'SettingsScreen' },
     { title: 'Go to Notifications', screen: 'NotificationsScreen' },
+    { title: 'Google Fonts', screen:'GoogleFonts'},
+     { title: 'Go to Login', screen: 'FormScreen' },
+    { title: 'BigForm', screen:'BigForm'},
+    { title: 'SignupForm', screen:'SignupForm'},
   ];
 
   return (

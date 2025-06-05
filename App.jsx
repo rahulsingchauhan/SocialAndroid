@@ -1,12 +1,12 @@
 // App.js
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import StackNavigator from './src/navigation/stackNavigation/StackNavigator';
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <StackNavigator />
     </NavigationContainer>
   );
