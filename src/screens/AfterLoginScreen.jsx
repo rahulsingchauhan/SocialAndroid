@@ -7,45 +7,75 @@ const AfterLoginScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: user.image }} style={styles.avatar} />
-      <Text style={styles.name}>{user.firstName} {user.lastName}</Text>
+
+      <Text style={styles.name}>
+        {user.firstName} {user.lastName}
+      </Text>
+
       <Text style={styles.username}>@{user.username}</Text>
-      <Text style={styles.email}>{user.email}</Text>
-      <Text style={styles.gender}>{user.gender.toUpperCase()}</Text>
+
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>Email</Text>
+        <Text style={styles.value}>{user.email}</Text>
+
+        <Text style={styles.label}>Gender</Text>
+        <Text style={styles.value}>{user.gender.toUpperCase()}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#000',
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#0d0d0d',
     alignItems: 'center',
+    paddingTop: 80,
+    paddingHorizontal: 20,
   },
   avatar: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 130,
+    height: 130,
+    borderRadius: 65,
     marginBottom: 20,
+    borderWidth: 2,
+    borderColor: '#444',
+    shadowColor: '#fff',
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
   },
   name: {
-    color: '#fff',
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 4,
   },
   username: {
-    color: '#aaa',
     fontSize: 16,
-    marginBottom: 10,
+    color: '#999',
+    marginBottom: 30,
   },
-  email: {
-    color: '#ccc',
-    fontSize: 14,
+  infoContainer: {
+    width: '100%',
+    backgroundColor: '#1a1a1a',
+    borderRadius: 12,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
   },
-  gender: {
-    color: '#888',
+  label: {
     fontSize: 13,
-    marginTop: 10,
+    color: '#777',
+    marginBottom: 4,
+    textTransform: 'uppercase',
+  },
+  value: {
+    fontSize: 16,
+    color: '#ddd',
+    marginBottom: 16,
   },
 });
 

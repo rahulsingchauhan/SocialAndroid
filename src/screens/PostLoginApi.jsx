@@ -1,8 +1,17 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
-import { Formik } from 'formik';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -10,15 +19,21 @@ const LoginSchema = Yup.object().shape({
 });
 
 const PostLoginApi = () => {
-  const handleLogin = async (values, { setSubmitting }) => {
+  const navigation = useNavigation();
+  const handleLogin = async (values, {setSubmitting}) => {
     try {
       const response = await axios.post('https://dummyjson.com/auth/login', {
         username: values.username,
         password: values.password,
       });
-      Alert.alert('Login Successful', JSON.stringify(response.data));
+
+      // On success, navigate to Profile screen with user data
+      navigation.navigate('AfterLoginScreen', {user: response.data});
     } catch (error) {
-      Alert.alert('Login Failed', error.response?.data?.message || 'Something went wrong');
+      Alert.alert(
+        'Login Failed',
+        error.response?.data?.message || 'Something went wrong',
+      );
     } finally {
       setSubmitting(false);
     }
@@ -27,11 +42,18 @@ const PostLoginApi = () => {
   return (
     <View style={styles.container}>
       <Formik
-        initialValues={{ username: '', password: '' }}
+        initialValues={{username: '', password: ''}}
         validationSchema={LoginSchema}
-        onSubmit={handleLogin}
-      >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
+        onSubmit={handleLogin}>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+          isSubmitting,
+        }) => (
           <>
             <Text style={styles.label}>Username</Text>
             <TextInput
@@ -42,7 +64,9 @@ const PostLoginApi = () => {
               onBlur={handleBlur('username')}
               value={values.username}
             />
-            {touched.username && errors.username && <Text style={styles.error}>{errors.username}</Text>}
+            {touched.username && errors.username && (
+              <Text style={styles.error}>{errors.username}</Text>
+            )}
 
             <Text style={styles.label}>Password</Text>
             <TextInput
@@ -54,9 +78,14 @@ const PostLoginApi = () => {
               onBlur={handleBlur('password')}
               value={values.password}
             />
-            {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
+            {touched.password && errors.password && (
+              <Text style={styles.error}>{errors.password}</Text>
+            )}
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={isSubmitting}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleSubmit}
+              disabled={isSubmitting}>
               {isSubmitting ? (
                 <ActivityIndicator color="#fff" />
               ) : (

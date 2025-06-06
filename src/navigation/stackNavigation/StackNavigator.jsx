@@ -14,6 +14,7 @@ import BigForm from '../../screens/BigForm';
 import SignupForm from '../../screens/SignupForm';
 import GetApiData from '../../screens/GetApiData';
 import PostLoginApi from '../../screens/PostLoginApi';
+import AfterLoginScreen from '../../screens/AfterLoginScreen';
 
 
 
@@ -32,6 +33,7 @@ const StackNavigator = () => {
           <Stack.Screen name="SignupForm" component={SignupForm}/>
           <Stack.Screen name="GetApiData" component={GetApiData}/>
           <Stack.Screen name="PostLoginApi" component={PostLoginApi}/>
+          <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
     </Stack.Navigator>
   );
 };
