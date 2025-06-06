@@ -8,7 +8,7 @@ import { SignupValidationSchema } from '../Schema/Schema';
 
 const BigForm = () => {
   const loginSubmit =(values)=>{
-console.log(values)
+console.log(values.fullName)
   }
   return (
     <ScrollView contentContainerStyle={styles.container}>

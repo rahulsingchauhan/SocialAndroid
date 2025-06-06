@@ -12,6 +12,7 @@ import FormScreen from '../../screens/FormScreen';
 import GoogleFonts from '../../screens/GoogleFonts';
 import BigForm from '../../screens/BigForm';
 import SignupForm from '../../screens/SignupForm';
+import GetApiData from '../../screens/GetApiData';
 
 
 
@@ -28,6 +29,7 @@ const StackNavigator = () => {
           <Stack.Screen name="GoogleFonts" component={GoogleFonts} />
           <Stack.Screen name="BigForm" component={BigForm}/>
           <Stack.Screen name="SignupForm" component={SignupForm}/>
+          <Stack.Screen name="GetApiData" component={GetApiData}/>
     </Stack.Navigator>
   );
 };

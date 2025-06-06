@@ -14,6 +14,7 @@ const HomeScreen = () => {
      { title: 'Go to Login', screen: 'FormScreen' },
     { title: 'BigForm', screen:'BigForm'},
     { title: 'SignupForm', screen:'SignupForm'},
+     { title: 'GetApiData', screen:'GetApiData'},
   ];
 
   return (
