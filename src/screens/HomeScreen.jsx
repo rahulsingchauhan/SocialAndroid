@@ -15,6 +15,7 @@ const HomeScreen = () => {
     { title: 'BigForm', screen:'BigForm'},
     { title: 'SignupForm', screen:'SignupForm'},
      { title: 'GetApiData', screen:'GetApiData'},
+     { title: 'PostLoginApi', screen:'PostLoginApi'},
   ];
 
   return (
