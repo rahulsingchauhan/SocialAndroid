@@ -8,7 +8,6 @@ const HomeScreen = () => {
   // List of buttons/screens
   const buttons = [
     { title: 'Go to Profile', screen: 'Profile' },
-    { title: 'Go to Settings', screen: 'SettingsScreen' },
     { title: 'Go to Notifications', screen: 'NotificationsScreen' },
     { title: 'Google Fonts', screen:'GoogleFonts'},
      { title: 'Go to Login', screen: 'FormScreen' },
@@ -16,6 +15,7 @@ const HomeScreen = () => {
     { title: 'SignupForm', screen:'SignupForm'},
      { title: 'GetApiData', screen:'GetApiData'},
      { title: 'PostLoginApi', screen:'PostLoginApi'},
+      { title: 'ImagePickerScreen', screen: 'ImagePickerScreen' },
   ];
 
   return (

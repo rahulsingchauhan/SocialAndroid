@@ -7,7 +7,7 @@ const GetApiData = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://10.0.2.2:3000/products')
+    fetch('https://dummyjson.com/c/6bb8-fe4d-4ba7-b297')
       .then(res => res.json())
       .then(data => {
         setProducts(data);

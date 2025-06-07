@@ -28,7 +28,9 @@ const PostLoginApi = () => {
       });
 
       // On success, navigate to Profile screen with user data
+      // if(response?.data){
       navigation.navigate('AfterLoginScreen', {user: response.data});
+      // }
     } catch (error) {
       Alert.alert(
         'Login Failed',

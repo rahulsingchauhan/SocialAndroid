@@ -4,7 +4,6 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-import SettingsScreen from '../../screens/SettingsScreen';
 import EditProfileScreen from '../../screens/EditProfileScreen';
 import BottomTabs from '../bottomNavigation/BottomTabs';
 import NotificationsScreen from '../../screens/NotificationsScreen';
@@ -15,6 +14,8 @@ import SignupForm from '../../screens/SignupForm';
 import GetApiData from '../../screens/GetApiData';
 import PostLoginApi from '../../screens/PostLoginApi';
 import AfterLoginScreen from '../../screens/AfterLoginScreen';
+import ImagePickerScreen from '../../screens/ImagePickerScreen';
+
 
 
 
@@ -24,7 +25,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="BottomTabs" component={BottomTabs} />
-      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="ImagePickerScreen" component={ImagePickerScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
        <Stack.Screen name="FormScreen" component={FormScreen} />
