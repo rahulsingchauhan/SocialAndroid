@@ -16,6 +16,7 @@ const HomeScreen = () => {
      { title: 'GetApiData', screen:'GetApiData'},
      { title: 'PostLoginApi', screen:'PostLoginApi'},
       { title: 'ImagePickerScreen', screen: 'ImagePickerScreen' },
+      { title: 'ModalScreen', screen:'ModalScreen'},
   ];
 
   return (

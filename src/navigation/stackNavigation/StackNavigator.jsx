@@ -15,6 +15,7 @@ import GetApiData from '../../screens/GetApiData';
 import PostLoginApi from '../../screens/PostLoginApi';
 import AfterLoginScreen from '../../screens/AfterLoginScreen';
 import ImagePickerScreen from '../../screens/ImagePickerScreen';
+import ModalScreen from '../../components/ModalScreen';
 
 
 
@@ -35,6 +36,7 @@ const StackNavigator = () => {
           <Stack.Screen name="GetApiData" component={GetApiData}/>
           <Stack.Screen name="PostLoginApi" component={PostLoginApi}/>
           <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
+          <Stack.Screen name="ModalScreen" component={ModalScreen}/>
     </Stack.Navigator>
   );
 };

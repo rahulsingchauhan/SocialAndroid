@@ -1,12 +1,23 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+
 
 const AfterLoginScreen = ({ route }) => {
+
   const { user } = route.params;
+
+  const handleEditImage = () => {
+    console.log('Edit Image Pressed');
+  };
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: user.image }} style={styles.avatar} />
+      <View style={styles.avatarContainer}>
+        <Image source={{ uri: user.image }} style={styles.avatar} />
+        <TouchableOpacity style={styles.editIcon} onPress={handleEditImage}>
+          <Text style={styles.editIconText}>✏️</Text>
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.name}>
         {user.firstName} {user.lastName}
@@ -33,17 +44,30 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     paddingHorizontal: 20,
   },
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: 20,
+  },
   avatar: {
     width: 130,
     height: 130,
     borderRadius: 65,
-    marginBottom: 20,
     borderWidth: 2,
     borderColor: '#444',
-    shadowColor: '#fff',
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
+  },
+  editIcon: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#222',
+    borderRadius: 20,
+    padding: 5,
+    borderWidth: 1,
+    borderColor: '#888',
+  },
+  editIconText: {
+    fontSize: 14,
+    color: '#fff',
   },
   name: {
     fontSize: 26,
