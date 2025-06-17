@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import EditProfileScreen from '../../screens/EditProfileScreen';
-import BottomTabs from '../bottomNavigation/BottomTabs';
+
 import NotificationsScreen from '../../screens/NotificationsScreen';
 import FormScreen from '../../screens/FormScreen';
 import GoogleFonts from '../../screens/GoogleFonts';
@@ -16,16 +16,15 @@ import PostLoginApi from '../../screens/PostLoginApi';
 import AfterLoginScreen from '../../screens/AfterLoginScreen';
 import ImagePickerScreen from '../../screens/ImagePickerScreen';
 import ModalScreen from '../../components/ModalScreen';
+import MyDrawer from '../DrawerNavigation/Drawer';
 
 
-
-
-const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
+const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="BottomTabs" component={BottomTabs} />
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+    <Stack.Screen name="Drawer" component={MyDrawer}/>
       <Stack.Screen name="ImagePickerScreen" component={ImagePickerScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
@@ -37,6 +36,8 @@ const StackNavigator = () => {
           <Stack.Screen name="PostLoginApi" component={PostLoginApi}/>
           <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
           <Stack.Screen name="ModalScreen" component={ModalScreen}/>
+
+
     </Stack.Navigator>
   );
 };

@@ -1,14 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity , ScrollView} from 'react-native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   // List of buttons/screens
   const buttons = [
-    { title: 'Go to Profile', screen: 'Profile' },
-    { title: 'Go to Notifications', screen: 'NotificationsScreen' },
+       { title: 'BigForm', screen:'BigForm'},
     { title: 'Google Fonts', screen:'GoogleFonts'},
      { title: 'Go to Login', screen: 'FormScreen' },
     { title: 'BigForm', screen:'BigForm'},
@@ -16,10 +15,10 @@ const HomeScreen = () => {
      { title: 'GetApiData', screen:'GetApiData'},
      { title: 'PostLoginApi', screen:'PostLoginApi'},
       { title: 'ImagePickerScreen', screen: 'ImagePickerScreen' },
-      { title: 'ModalScreen', screen:'ModalScreen'},
   ];
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>
 
@@ -33,6 +32,7 @@ const HomeScreen = () => {
         </TouchableOpacity>
       ))}
     </View>
+    </ScrollView>
   );
 };
 
