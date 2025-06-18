@@ -12,6 +12,7 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -19,6 +20,9 @@ const LoginSchema = Yup.object().shape({
 });
 
 const PostLoginApi = () => {
+
+
+  
   const navigation = useNavigation();
   const handleLogin = async (values, {setSubmitting}) => {
     try {
@@ -27,9 +31,18 @@ const PostLoginApi = () => {
         password: values.password,
       });
 
+      //here we are going to save userLogin token to asyncStorage
+
+      try {
+        await AsyncStorage.setItem('myKey', '1');
+        Alert.alert('Success', 'Value saved successfully!');
+      } catch (e) {
+        Alert.alert('Error', 'Failed to save the data.');
+      }
+
       // On success, navigate to Profile screen with user data
       // if(response?.data){
-      navigation.navigate('AfterLoginScreen', {user: response.data});
+      navigation.navigate('MyDrawer');
       // }
     } catch (error) {
       Alert.alert(
@@ -39,8 +52,11 @@ const PostLoginApi = () => {
     } finally {
       setSubmitting(false);
     }
+    
   };
 
+
+  
   return (
     <View style={styles.container}>
       <Formik

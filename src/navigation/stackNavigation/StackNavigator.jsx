@@ -18,14 +18,15 @@ import ImagePickerScreen from '../../screens/ImagePickerScreen';
 import ModalScreen from '../../components/ModalScreen';
 import MyDrawer from '../DrawerNavigation/Drawer';
 import AsyncStorage from '../../screens/AsyncStorage';
+import HomeScreen from '../../screens/HomeScreen';
 
 
 
 const StackNavigator = () => {
 const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator screenOptions={{headerShown:false}}>
-    <Stack.Screen name="Drawer" component={MyDrawer}/>
+    <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName="PostLoginApi">
+    <Stack.Screen name="MyDrawer" component={MyDrawer}/>
       <Stack.Screen name="ImagePickerScreen" component={ImagePickerScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
@@ -38,8 +39,7 @@ const Stack = createNativeStackNavigator();
           <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
           <Stack.Screen name="ModalScreen" component={ModalScreen}/>
           <Stack.Screen name="AsyncStorage" component={AsyncStorage}/>
-
-
+          <Stack.Screen name="HomeScreen" component={HomeScreen}/>
     </Stack.Navigator>
   );
 };
