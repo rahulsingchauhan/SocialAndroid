@@ -1,11 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Animated,
-} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {View, Text, StyleSheet, Image, Animated} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -15,22 +10,22 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BottomTabs from '../bottomNavigation/BottomTabs';
 import ProfileScreen from '../../screens/ProfileScreen';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
 // 🔒 Icons defined outside render to avoid warning
-const DashboardIcon = ({ color, size }) => (
+const DashboardIcon = ({color, size}) => (
   <Icon name="view-dashboard-outline" color={color} size={size} />
 );
-const ProfileIcon = ({ color, size }) => (
+const ProfileIcon = ({color, size}) => (
   <Icon name="account-circle-outline" color={color} size={size} />
 );
-const LogoutIcon = ({ color, size }) => (
+const LogoutIcon = ({color, size}) => (
   <Icon name="logout" color={color || '#f66'} size={size || 22} />
 );
 
-const CustomDrawer = (props) => {
+const CustomDrawer = props => {
   const navigation = useNavigation();
   const profileScale = useRef(new Animated.Value(0.9)).current;
 
@@ -41,29 +36,36 @@ const CustomDrawer = (props) => {
     }).start();
   }, [profileScale]);
 
-  const handleLogout = () => {
+
+  //this will handle logout remove saved login 
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('myKey');
+    } catch (e) {
+      // remove error
+    }
+
+    console.log('Done.');
+
+    //when user login is removed in upper line now this line will not allow user to navigate back 
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{ name: 'PostLoginApi' }],
-      })
+        routes: [{name: 'PostLoginApi'}],
+      }),
     );
   };
 
   return (
     <View style={styles.drawerContainer}>
-      <DrawerContentScrollView
-        {...props}
-        contentContainerStyle={{ flexGrow: 1 }}
-      >
+      <DrawerContentScrollView {...props} contentContainerStyle={{flexGrow: 1}}>
         <Animated.View
           style={[
             styles.profileContainer,
-            { transform: [{ scale: profileScale }] },
-          ]}
-        >
+            {transform: [{scale: profileScale}]},
+          ]}>
           <Image
-            source={{ uri: 'https://i.pravatar.cc/300' }}
+            source={{uri: 'https://i.pravatar.cc/300'}}
             style={styles.profileImage}
           />
           <Text style={styles.userName}>Rahul Chauhan</Text>
@@ -72,7 +74,7 @@ const CustomDrawer = (props) => {
           <Text style={styles.userInfo}>📞 +91 8602399308</Text>
         </Animated.View>
 
-        <View style={{ flex: 1, paddingTop: 10 }}>
+        <View style={{flex: 1, paddingTop: 10}}>
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
@@ -82,7 +84,7 @@ const CustomDrawer = (props) => {
           label="Logout"
           onPress={handleLogout}
           icon={LogoutIcon}
-          labelStyle={{ color: '#f66', fontWeight: 'bold' }}
+          labelStyle={{color: '#f66', fontWeight: 'bold'}}
         />
       </View>
     </View>
@@ -93,7 +95,7 @@ const MyDrawer = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Dashboard"
-      drawerContent={(props) => <CustomDrawer {...props} />}
+      drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
         drawerStyle: {
           backgroundColor: '#1e1e1e',
@@ -111,17 +113,16 @@ const MyDrawer = () => {
           marginLeft: -12,
           fontWeight: '500',
         },
-      }}
-    >
+      }}>
       <Drawer.Screen
         name="Dashboard"
         component={BottomTabs}
-        options={{ drawerIcon: DashboardIcon }}
+        options={{drawerIcon: DashboardIcon}}
       />
       <Drawer.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ drawerIcon: ProfileIcon }}
+        options={{drawerIcon: ProfileIcon}}
       />
     </Drawer.Navigator>
   );
