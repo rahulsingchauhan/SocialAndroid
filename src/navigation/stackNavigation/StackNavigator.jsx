@@ -17,6 +17,7 @@ import AfterLoginScreen from '../../screens/AfterLoginScreen';
 import ImagePickerScreen from '../../screens/ImagePickerScreen';
 import ModalScreen from '../../components/ModalScreen';
 import MyDrawer from '../DrawerNavigation/Drawer';
+import AsyncStorage from '../../screens/AsyncStorage';
 
 
 
@@ -36,6 +37,7 @@ const Stack = createNativeStackNavigator();
           <Stack.Screen name="PostLoginApi" component={PostLoginApi}/>
           <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
           <Stack.Screen name="ModalScreen" component={ModalScreen}/>
+          <Stack.Screen name="AsyncStorage" component={AsyncStorage}/>
 
 
     </Stack.Navigator>
