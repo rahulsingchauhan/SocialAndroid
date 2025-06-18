@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -14,25 +14,43 @@ import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// ✅ Login form validation schema using Yup
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   password: Yup.string().required('Password is required'),
 });
 
 const PostLoginApi = () => {
-
-
-  
   const navigation = useNavigation();
+
+  // 🆕 ✅ useEffect to auto-login if AsyncStorage has login flag
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        const savedValue = await AsyncStorage.getItem('myKey');
+        if (savedValue === '1') {
+          navigation.navigate('MyDrawer');
+        }
+      } catch (e) {
+        console.log('Error reading login data:', e);
+      }
+    };
+    checkLogin();
+  }, [navigation]); // ✅ navigation added to dependency array
+
   const handleLogin = async (values, {setSubmitting}) => {
     try {
+      // ✅ Sending login request using axios
       const response = await axios.post('https://dummyjson.com/auth/login', {
         username: values.username,
         password: values.password,
       });
 
-      //here we are going to save userLogin token to asyncStorage
+      // 🆕 (Optional) you can use response.data.token if needed
+      // const token = response.data.token;
+      // await AsyncStorage.setItem('authToken', token);
 
+      // ✅ Save user login flag to AsyncStorage
       try {
         await AsyncStorage.setItem('myKey', '1');
         Alert.alert('Success', 'Value saved successfully!');
@@ -40,10 +58,8 @@ const PostLoginApi = () => {
         Alert.alert('Error', 'Failed to save the data.');
       }
 
-      // On success, navigate to Profile screen with user data
-      // if(response?.data){
+      // ✅ On success, navigate to Profile screen with user data
       navigation.navigate('MyDrawer');
-      // }
     } catch (error) {
       Alert.alert(
         'Login Failed',
@@ -52,11 +68,8 @@ const PostLoginApi = () => {
     } finally {
       setSubmitting(false);
     }
-    
   };
 
-
-  
   return (
     <View style={styles.container}>
       <Formik
