@@ -3,9 +3,9 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import BottomTabs from '../bottomNavigation/BottomTabs';
-import ProfileScreen from '../../screens/ProfileScreen';
 import CustomDrawer from '../../components/CustomDrawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AfterLoginScreen from '../../screens/AfterLoginScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -47,7 +47,7 @@ const MyDrawer = () => {
       />
       <Drawer.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={AfterLoginScreen}
         options={{ drawerIcon: ProfileIcon }}
       />
     </Drawer.Navigator>

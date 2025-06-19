@@ -1,13 +1,23 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ImagePickerScreen from './ImagePickerScreen';
 
+const AfterLoginScreen = () => {
+  const navigation = useNavigation();
 
-const AfterLoginScreen = ({ route }) => {
-
-  const { user } = route.params;
+  // Placeholder user data
+  const user = {
+    firstName: 'Rahul',
+    lastName: 'Chauhan',
+    username: 'rahulsingh',
+    email: 'rahul@example.com',
+    gender: 'male',
+    image: 'https://via.placeholder.com/130',
+  };
 
   const handleEditImage = () => {
-    console.log('Edit Image Pressed');
+    navigation.navigate(ImagePickerScreen);
   };
 
   return (

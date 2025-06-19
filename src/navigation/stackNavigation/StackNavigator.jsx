@@ -14,11 +14,12 @@ import SignupForm from '../../screens/SignupForm';
 import GetApiData from '../../screens/GetApiData';
 import PostLoginApi from '../../screens/PostLoginApi';
 import AfterLoginScreen from '../../screens/AfterLoginScreen';
-import ImagePickerScreen from '../../screens/ImagePickerScreen';
-import ModalScreen from '../../components/ModalScreen';
+import ModalScreen from '../../screens/ImagePickerScreen';
 import MyDrawer from '../DrawerNavigation/Drawer';
 import AsyncStorage from '../../screens/AsyncStorage';
 import HomeScreen from '../../screens/HomeScreen';
+import ImagePickerScreen from '../../screens/ImagePickerScreen';
+
 
 
 
@@ -37,7 +38,6 @@ const Stack = createNativeStackNavigator();
           <Stack.Screen name="GetApiData" component={GetApiData}/>
           <Stack.Screen name="PostLoginApi" component={PostLoginApi}/>
           <Stack.Screen name="AfterLoginScreen" component={AfterLoginScreen}/>
-          <Stack.Screen name="ModalScreen" component={ModalScreen}/>
           <Stack.Screen name="AsyncStorage" component={AsyncStorage}/>
           <Stack.Screen name="HomeScreen" component={HomeScreen}/>
     </Stack.Navigator>
